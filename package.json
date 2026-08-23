@@ -1,0 +1,15 @@
+{
+  "name": "mable-hair's",
+  "version": "1.0.0",
+  "description": "A fully functional, modern, and interactive e-commerce website for Mable Hair Care. Built securely using **HTML, CSS, and Vanilla JavaScript**.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^20.0.3"
+  }
+}

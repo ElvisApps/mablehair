@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation | Mable Hair Care</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .success-page { padding: 8rem 0 4rem; min-height: 80vh; text-align: center; }
+        .success-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 3rem; border-radius: var(--border-radius-lg); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .success-container i.fa-check-circle { font-size: 4rem; color: var(--success-color); margin-bottom: 1.5rem; }
+        .order-details-box { background: rgba(74, 93, 35, 0.05); border: 1px solid rgba(74, 93, 35, 0.1); padding: 1.5rem; border-radius: var(--border-radius); margin: 2rem 0; text-align: left; }
+        .order-details-box div { margin-bottom: 0.5rem; }
+        .order-details-box span { font-weight: 600; color: var(--primary-color); display: inline-block; width: 140px; }
+        .banking-details { background: #f9f9f9; padding: 1.5rem; border-radius: 8px; text-align: left; font-family: monospace; font-size: 0.95rem; margin-top: 1rem; }
+        .banking-details div { margin-bottom: 0.5rem; }
+        .banking-details span { font-weight: 600; color: var(--text-main); display: inline-block; width: 130px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 40px; width: auto; border-radius: 5px;">
+                <span>Mable Hair Care</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="success-page container">
+        <div class="success-container reveal">
+            <i class="fas fa-check-circle"></i>
+            <h1 style="color: var(--primary-color); margin-bottom: 1rem;">Order Received</h1>
+            <p style="font-size: 1.1rem; color: var(--text-light);">Thank you for shopping with Mable Hair Care.</p>
+            
+            <p id="emailStatusMsg" style="margin-top: 1rem; color: var(--text-light); font-weight: 500;">
+                Your order has been recorded. You should receive a confirmation email shortly.
+            </p>
+
+            <div class="order-details-box" id="orderDetails">
+                <!-- Injected via JS -->
+            </div>
+
+            <div style="text-align: left; margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem;">EFT Payment Instructions</h3>
+                <p style="font-size: 0.95rem; color: var(--text-light);">Please transfer the total amount to the bank account below. <strong style="color: var(--error-color);">Use your Order Number as the payment reference.</strong></p>
+                <div class="banking-details" id="bankingDetailsBox">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; flex-direction: column;">
+                <a href="https://wa.me/27727723653" target="_blank" class="btn btn-primary" style="background: #25D366; color: white;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Mable Hair Care
+                </a>
+                <a href="shop.html" class="btn btn-secondary">
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 50px; width: auto; border-radius: 5px; background: rgba(255,255,255,0.9); padding: 4px;">
+                    <h3 style="color: var(--bg-color); font-size: 1.5rem; margin: 0;">Mable Hair Care</h3>
+                </div>
+                <p style="color: #ccc; font-size: 0.9rem;">Authentic, natural hair care for stronger, healthier-looking hair.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderJson = localStorage.getItem('mable_last_order');
+            if (!orderJson) {
+                document.getElementById('orderDetails').innerHTML = '<p>No recent order found.</p>';
+                return;
+            }
+
+            const order = JSON.parse(orderJson);
+            const bd = storeConfig.bankingDetails;
+
+            document.getElementById('orderDetails').innerHTML = `
+                <div><span>Order Number:</span> ${order.orderNumber}</div>
+                <div><span>Order Total:</span> ${formatCurrency(order.total)}</div>
+                <div><span>Payment Method:</span> ${order.paymentMethod}</div>
+                <div><span>Payment Status:</span> <strong style="color: var(--accent-color)">${order.status}</strong></div>
+            `;
+
+            document.getElementById('bankingDetailsBox').innerHTML = `
+                <div><span>Bank Name:</span> ${bd.bankName}</div>
+                <div><span>Account Holder:</span> ${bd.accountHolder}</div>
+                <div><span>Account Number:</span> ${bd.accountNumber}</div>
+                <div><span>Account Type:</span> ${bd.accountType}</div>
+                <div><span>Branch Code:</span> ${bd.branchCode}</div>
+                <div style="margin-top: 1rem; color: var(--error-color);"><span>Reference:</span> <strong>${order.orderNumber}</strong></div>
+            `;
+
+            // If the API endpoint wasn't configured, update the email status message.
+            if(storeConfig.apiEndpoint === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+                document.getElementById('emailStatusMsg').innerHTML = `
+                    Your order has been recorded. Please contact Mable Hair Care on <strong>${storeConfig.phone}</strong> if you do not receive your confirmation email.
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

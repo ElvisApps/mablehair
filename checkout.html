@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Mable Hair Care</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .checkout-page { padding: 8rem 0 4rem; min-height: 80vh; }
+        .checkout-header { text-align: center; margin-bottom: 3rem; }
+        .checkout-container { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        @media (min-width: 992px) { .checkout-container { grid-template-columns: 1.5fr 1fr; } }
+        .checkout-section { background: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 2rem; }
+        .checkout-section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color); }
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 768px) { .form-grid { grid-template-columns: 1fr 1fr; } .full-width { grid-column: 1 / -1; } }
+        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .form-group label { font-weight: 500; color: var(--text-main); font-size: 0.9rem; }
+        .form-group input { padding: 0.75rem; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: var(--font-body); font-size: 1rem; }
+        .form-group input:focus { outline: none; border-color: var(--secondary-color); }
+        .radio-option { display: flex; align-items: center; padding: 1rem; border: 1px solid var(--secondary-color); border-radius: var(--border-radius); background: rgba(74, 93, 35, 0.05); }
+        .order-summary { background: #FDFBF7; padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--border-color); position: sticky; top: calc(var(--nav-height) + 2rem); }
+        .summary-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed var(--border-color); }
+        .summary-item img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--text-light); }
+        .summary-row.total { font-weight: 700; color: var(--primary-color); font-size: 1.25rem; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem; }
+        .banking-details { background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-top: 1rem; font-size: 0.9rem; font-family: monospace; }
+        .banking-details div { margin-bottom: 0.5rem; }
+        .banking-details span { font-weight: 600; color: var(--primary-color); display: inline-block; width: 120px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 40px; width: auto; border-radius: 5px;">
+                <span>Mable Hair Care</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="icon-btn" style="color: var(--secondary-color)">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="shop.html" class="mobile-nav-item"><i class="fas fa-store"></i><span>Shop</span></a>
+        <a href="cart.html" class="mobile-nav-item active">
+            <div style="position:relative">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" style="display:none; top:-5px; right:-10px;">0</span>
+            </div>
+            <span>Cart</span>
+        </a>
+    </nav>
+
+    <div class="checkout-page">
+        <div class="container checkout-header reveal">
+            <h1>Secure Checkout</h1>
+        </div>
+
+        <div class="checkout-container reveal">
+            <form id="checkoutForm" onsubmit="handleCheckout(event)">
+                <div class="checkout-section">
+                    <h2>Shipping Details</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" required placeholder="Jane Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required placeholder="jane@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required placeholder="072 772 3653">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" required placeholder="123 Main St">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" required placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="province">Province / State</label>
+                            <input type="text" id="province" required placeholder="Province">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Postal Code</label>
+                            <input type="text" id="zip" required placeholder="1000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-section">
+                    <h2>Payment Method</h2>
+                    <div class="radio-option">
+                        <input type="radio" name="payment" value="eft" checked style="margin-right:1rem;">
+                        <div style="flex: 1">
+                            <div style="font-weight: 500"><i class="fas fa-university" style="margin-right:10px;"></i> EFT / Bank Transfer</div>
+                        </div>
+                    </div>
+                    <div class="banking-details" id="bankingDetailsBox">
+                        <!-- Injected via JS -->
+                    </div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--error-color); font-weight: 500;">
+                        <i class="fas fa-info-circle"></i> Please use your Order Number as the payment reference.
+                    </p>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1.25rem;">
+                    Submit Order
+                </button>
+            </form>
+
+            <aside>
+                <div class="order-summary" id="orderSummary">
+                    <!-- Injected by JS -->
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 50px; width: auto; border-radius: 5px; background: rgba(255,255,255,0.9); padding: 4px;">
+                    <h3 style="color: var(--bg-color); font-size: 1.5rem; margin: 0;">Mable Hair Care</h3>
+                </div>
+                <p style="color: #ccc; font-size: 0.9rem;">Authentic, natural hair care for stronger, healthier-looking hair.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (cart.length === 0) {
+                window.location.href = 'shop.html';
+                return;
+            }
+            renderOrderSummary();
+            renderBankingDetails();
+        });
+
+        function renderBankingDetails() {
+            const box = document.getElementById('bankingDetailsBox');
+            const bd = storeConfig.bankingDetails;
+            box.innerHTML = `
+                <div><span>Bank Name:</span> ${bd.bankName}</div>
+                <div><span>Account Holder:</span> ${bd.accountHolder}</div>
+                <div><span>Account Number:</span> ${bd.accountNumber}</div>
+                <div><span>Account Type:</span> ${bd.accountType}</div>
+                <div><span>Branch Code:</span> ${bd.branchCode}</div>
+            `;
+        }
+
+        function renderOrderSummary() {
+            const container = document.getElementById('orderSummary');
+            let subtotal = 0;
+            
+            let html = `<h2 style="font-size: 1.25rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">Order Summary</h2>`;
+
+            cart.forEach(cartItem => {
+                const p = products.find(prod => prod.id === cartItem.id);
+                if (p) {
+                    const itemTotal = p.price * cartItem.quantity;
+                    subtotal += itemTotal;
+                    html += `
+                        <div class="summary-item">
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <img src="${p.image}" alt="${p.name}">
+                                <div>
+                                    <div style="font-weight: 500; font-size: 0.9rem;">${p.name}</div>
+                                    <div style="font-size: 0.8rem; color: var(--text-light)">Qty: ${cartItem.quantity}</div>
+                                </div>
+                            </div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">${formatCurrency(itemTotal)}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            const total = subtotal + storeConfig.deliveryFee;
+
+            html += `
+                <div class="summary-row" style="margin-top: 1.5rem;">
+                    <span>Subtotal</span>
+                    <span>${formatCurrency(subtotal)}</span>
+                </div>
+                <div class="summary-row">
+                    <span>Standard Delivery</span>
+                    <span>${formatCurrency(storeConfig.deliveryFee)}</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span>${formatCurrency(total)}</span>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        async function handleCheckout(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            const orderNumber = generateOrderNumber();
+            let subtotal = 0;
+            const orderProducts = cart.map(cartItem => {
+                const p = products.find(prod => prod.id === cartItem.id);
+                subtotal += p.price * cartItem.quantity;
+                return { name: p.name, quantity: cartItem.quantity, price: p.price };
+            });
+
+            const orderData = {
+                type: 'order',
+                orderNumber: orderNumber,
+                date: new Date().toISOString(),
+                customer: {
+                    name: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    address: `${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('province').value} ${document.getElementById('zip').value}`
+                },
+                products: orderProducts,
+                subtotal: subtotal,
+                deliveryFee: storeConfig.deliveryFee,
+                total: subtotal + storeConfig.deliveryFee,
+                paymentMethod: 'EFT',
+                status: 'Awaiting EFT Payment'
+            };
+
+            // Save order locally
+            localStorage.setItem('mable_last_order', JSON.stringify(orderData));
+
+            try {
+                if(storeConfig.apiEndpoint && storeConfig.apiEndpoint !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+                    const response = await fetch(storeConfig.apiEndpoint, {
+                        method: 'POST',
+                        mode: 'no-cors', // Because Apps Script often requires no-cors for simple setups
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(orderData)
+                    });
+                }
+                // We assume success if we reach here (no-cors makes it hard to verify, but we proceed)
+            } catch (error) {
+                console.error("Email sending failed", error);
+                // We still proceed, but order-success.html will handle the logic if needed
+            }
+
+            // Clear Cart and Redirect
+            cart = [];
+            saveCart();
+            window.location.href = 'order-success.html';
+        }
+    </script>
+</body>
+</html>

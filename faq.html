@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs | Mable Hair Care</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .faq-page { padding: 8rem 0 4rem; min-height: 80vh; }
+        .faq-header { text-align: center; margin-bottom: 3rem; }
+        
+        .search-container { max-width: 600px; margin: 0 auto 3rem; position: relative; }
+        .search-container input { width: 100%; padding: 1rem 1rem 1rem 3rem; border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); font-size: 1.1rem; font-family: var(--font-body); }
+        .search-container i { position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); color: var(--text-light); }
+
+        .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        
+        .faq-item { background: var(--card-bg); border-radius: var(--border-radius); box-shadow: 0 2px 10px rgba(0,0,0,0.02); overflow: hidden; }
+        
+        .faq-question { width: 100%; text-align: left; background: none; border: none; padding: 1.5rem; font-size: 1.1rem; font-family: var(--font-body); font-weight: 500; color: var(--primary-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+        .faq-question:hover { background: rgba(74, 93, 35, 0.03); }
+        .faq-question i { transition: transform 0.3s; color: var(--secondary-color); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: white; }
+        .faq-answer-inner { padding: 0 1.5rem 1.5rem; color: var(--text-light); line-height: 1.6; }
+        .faq-answer-inner a { color: var(--secondary-color); text-decoration: underline; }
+        
+        .no-results { text-align: center; color: var(--text-light); font-size: 1.1rem; display: none; padding: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 40px; width: auto; border-radius: 5px;">
+                <span>Mable Hair Care</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="faq.html" class="active">FAQs</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="shop.html" class="mobile-nav-item"><i class="fas fa-store"></i><span>Shop</span></a>
+        <a href="cart.html" class="mobile-nav-item">
+            <div style="position:relative">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" style="display:none; top:-5px; right:-10px;">0</span>
+            </div>
+            <span>Cart</span>
+        </a>
+    </nav>
+
+    <div class="faq-page container">
+        <div class="faq-header reveal">
+            <h1>Frequently Asked Questions</h1>
+            <p style="color: var(--text-light); font-size: 1.1rem;">Find answers to your questions about orders, products, and more.</p>
+        </div>
+
+        <div class="search-container reveal">
+            <i class="fas fa-search"></i>
+            <input type="text" id="faqSearch" placeholder="Search FAQs (e.g., payment, delivery, Chebe)...">
+        </div>
+
+        <div class="faq-list reveal" id="faqList">
+            <div class="faq-item">
+                <button class="faq-question">How do I place an order? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Browse the products, add your chosen products to the cart, proceed to checkout and complete your customer details. Select EFT and submit your order.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What payment method do you accept? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Mable Hair Care currently accepts EFT for online orders.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">When will I receive my EFT instructions? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    EFT instructions will be displayed after checkout and included in the order confirmation email.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How do I know if my order was received? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    After successfully submitting your order, you will receive an order confirmation showing your order number.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I order more than one product? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Yes. Add multiple products to your cart and adjust the quantity before checkout.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I change my order? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Contact Mable Hair Care as soon as possible after placing your order.<br>
+                    WhatsApp or call: <strong>072 772 3653</strong>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Where is Mable Hair Care located? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Mable Hair Care is based in: <strong>North West, South Africa</strong>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I contact Mable Hair Care? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    WhatsApp or call: <strong>072 772 3653</strong><br>
+                    Email: <a href="mailto:info@mablehair.co.za">info@mablehair.co.za</a>
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Are Mable Hair Care products suitable for all hair types? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Products can be used as part of different hair-care routines, but customers should review the individual product instructions and ingredients before use.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How should I use Chebe Powder? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Follow the product instructions. Prepare the paste as directed, apply it into sectioned hair and twist it.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How should I use Karkar Oil? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Apply a suitable amount to the hair and scalp and massage gently. Follow the product instructions on the packaging.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Are the products natural? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Where a product is labelled as natural, please refer to the exact wording and ingredients listed on the product packaging.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I cancel my order? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Customers should contact Mable Hair Care as soon as possible if they need to request an order cancellation.
+                </div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What happens if I have a problem with my order? <i class="fas fa-chevron-down"></i></button>
+                <div class="faq-answer"><div class="faq-answer-inner">
+                    Contact: <strong>072 772 3653</strong> or <a href="mailto:info@mablehair.co.za">info@mablehair.co.za</a>
+                </div></div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResultsMsg">
+            No FAQs found matching your search.
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 50px; width: auto; border-radius: 5px; background: rgba(255,255,255,0.9); padding: 4px;">
+                    <h3 style="color: var(--bg-color); font-size: 1.5rem; margin: 0;">Mable Hair Care</h3>
+                </div>
+                <p style="color: #ccc; font-size: 0.9rem;">Authentic, natural hair care for stronger, healthier-looking hair.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('faqSearch');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+
+            // Accordion Logic
+            faqItems.forEach(item => {
+                const questionBtn = item.querySelector('.faq-question');
+                questionBtn.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+
+                    // Open clicked if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // Search Logic
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                let visibleCount = 0;
+
+                faqItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+
+                noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

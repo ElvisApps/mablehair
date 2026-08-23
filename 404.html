@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Mable Hair Care</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-page { padding: 8rem 0 4rem; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .error-container h1 { font-size: 6rem; color: var(--accent-color); margin-bottom: 0; line-height: 1; }
+        .error-container h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .error-container p { color: var(--text-light); margin-bottom: 2rem; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 40px; width: auto; border-radius: 5px;">
+                <span>Mable Hair Care</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="error-page container">
+        <div class="error-container reveal">
+            <h1>404</h1>
+            <h2>Oops! Page not found.</h2>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+            <a href="index.html" class="btn btn-primary">Return to Home</a>
+            <a href="shop.html" class="btn btn-secondary" style="margin-left: 1rem;">Go to Shop</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

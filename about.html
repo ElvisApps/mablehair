@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Mable Hair Care</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #F5EFEB 0%, var(--bg-color) 100%);
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-content {
+            padding: 4rem 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+            text-align: left;
+        }
+
+        @media (min-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .feature-item h3 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 40px; width: auto; border-radius: 5px;">
+                <span>Mable Hair Care</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html" class="active">About</a>
+                <a href="faq.html">FAQs</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item">
+            <i class="fas fa-store"></i>
+            <span>Shop</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+            <i class="far fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+            <div style="position:relative">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" style="display:none; top:-5px; right:-10px;">0</span>
+            </div>
+            <span>Cart</span>
+        </a>
+    </nav>
+
+    <header class="about-header reveal">
+        <div class="container">
+            <h1>Our Story</h1>
+            <p style="color: var(--text-light); font-size: 1.25rem;">Authentic African beauty traditions, bottled for you.</p>
+        </div>
+    </header>
+
+    <section class="about-content reveal">
+        <p>Mable Hair Care was born out of a profound respect for natural African hair-care traditions. For centuries, women in Chad and across the continent have relied on the earth's natural bounties, like Chebe powder and Karkar oil, to maintain strong, resilient, and beautiful hair.</p>
+        <p>We saw the need to make these authentic ingredients accessible to everyone seeking a simpler, more effective natural hair routine. Our products are formulated to moisturize, strengthen, and support length retention naturally, without relying on harsh chemicals or artificial additives.</p>
+        <p>At Mable, we believe that healthy-looking hair starts with consistent care and natural ingredients. We are committed to sourcing ethically, formulating thoughtfully, and celebrating the unique beauty of natural textured hair.</p>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <i class="fas fa-leaf"></i>
+                <div>
+                    <h3>100% Natural</h3>
+                    <p style="margin:0; font-size: 0.95rem;">We harness the power of botanicals, essential oils, and traditional herbs to care for your hair gently and effectively.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-globe-africa"></i>
+                <div>
+                    <h3>African Heritage</h3>
+                    <p style="margin:0; font-size: 0.95rem;">Our formulations are heavily inspired by ancient Chadian and Sudanese hair care secrets passed down through generations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 50px; width: auto; border-radius: 5px; background: rgba(255,255,255,0.9); padding: 4px;">
+                    <h3 style="color: var(--bg-color); font-size: 1.5rem; margin: 0;">Mable Hair Care</h3>
+                </div>
+                <p style="color: #ccc; font-size: 0.9rem;">Authentic, natural hair care for stronger, healthier-looking hair.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop All</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 Mable Hair Care. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

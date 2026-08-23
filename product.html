@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Mable Hair Care</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-page {
+            padding: 8rem 0 4rem;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Gallery */
+        .product-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: var(--border-radius-lg);
+            background: #f5f5f5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .thumbnail-list {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--border-radius);
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--transition-speed);
+            opacity: 0.7;
+        }
+
+        .thumbnail.active, .thumbnail:hover {
+            border-color: var(--secondary-color);
+            opacity: 1;
+        }
+
+        /* Details */
+        .product-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .add-to-cart-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .qty-input {
+            width: 80px;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+        }
+
+        .tab-headers {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            padding-bottom: 1rem;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width var(--transition-speed);
+        }
+
+        .tab-btn.active::after {
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            line-height: 1.8;
+            color: var(--text-light);
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        /* Related */
+        .related-section {
+            padding: 5rem 0;
+            background-color: #fff;
+            margin-top: 4rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Desktop Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 0.5rem;">
+                <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 40px; width: auto; border-radius: 5px;">
+                <span>Mable Hair Care</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="faq.html">FAQs</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <button class="icon-btn" onclick="window.location.href='shop.html?focus=search'">
+                    <i class="fas fa-search"></i>
+                </button>
+                <a href="wishlist.html" class="icon-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" style="display:none;">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item">
+            <i class="fas fa-store"></i>
+            <span>Shop</span>
+        </a>
+        <a href="shop.html?focus=search" class="mobile-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+            <i class="far fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+            <div style="position:relative">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" style="display:none; top:-5px; right:-10px;">0</span>
+            </div>
+            <span>Cart</span>
+        </a>
+    </nav>
+
+    <!-- Product Details Area -->
+    <div class="product-page">
+        <div class="product-container reveal" id="productContainer">
+            <!-- Injected by JS -->
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="related-section">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">You May Also Like</h2>
+            <div class="products-grid reveal" id="relatedProducts">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <img src="image/logo.png" alt="Mable Hair Care Logo" style="height: 50px; width: auto; border-radius: 5px; background: rgba(255,255,255,0.9); padding: 4px;">
+                    <h3 style="color: var(--bg-color); font-size: 1.5rem; margin: 0;">Mable Hair Care</h3>
+                </div>
+                <p style="color: #ccc; font-size: 0.9rem;">Authentic, natural hair care for stronger, healthier-looking hair.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop All</a></li>
+                    <li><a href="about.html">About Mable</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="cart.html">Shopping Cart</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 Mable Hair Care. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id') || 'p1'; // fallback to first product
+            const product = products.find(p => p.id === productId);
+
+            if (!product) {
+                document.getElementById('productContainer').innerHTML = '<h2>Product not found.</h2>';
+                return;
+            }
+
+            document.title = `${product.name} | Mable Hair Care`;
+
+            // Save to recently viewed
+            let recent = JSON.parse(localStorage.getItem('mable_recent')) || [];
+            if(!recent.includes(product.id)) {
+                recent.unshift(product.id);
+                if(recent.length > 5) recent.pop();
+                localStorage.setItem('mable_recent', JSON.stringify(recent));
+            }
+
+            const isWishlisted = wishlist.includes(product.id);
+            const starRating = Array(5).fill(0).map((_, i) => 
+                `<i class="${i < Math.floor(product.rating) ? 'fas' : (i < product.rating ? 'fas fa-star-half-alt' : 'far')} fa-star"></i>`
+            ).join('');
+
+            const html = `
+                <!-- Gallery -->
+                <div class="product-gallery">
+                    <img src="${product.image}" id="mainImage" class="main-image" alt="${product.name}">
+                    <div class="thumbnail-list">
+                        <img src="${product.image}" class="thumbnail active" onclick="changeImage(this)">
+                        <img src="${product.image}" class="thumbnail" style="filter: brightness(0.9)" onclick="changeImage(this)">
+                        <img src="${product.image}" class="thumbnail" style="filter: brightness(0.8)" onclick="changeImage(this)">
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="product-info">
+                    <div style="color: var(--secondary-color); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 0.5rem;">${product.category}</div>
+                    <h1>${product.name}</h1>
+                    <div class="product-meta">
+                        <div style="color: var(--accent-color)">${starRating}</div>
+                        <div>${product.reviews} Reviews</div>
+                    </div>
+                    <div class="price">${formatCurrency(product.price)}</div>
+                    <p class="description">${product.description}</p>
+                    
+                    <div style="display:flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <input type="number" id="quantityInput" class="qty-input" value="1" min="1" max="10">
+                        <button type="button" class="btn btn-primary add-to-cart" data-id="${product.id}" style="flex:1" onclick="addToCart(event, '${product.id}', parseInt(document.getElementById('quantityInput').value))">
+                            Add to Cart
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="wishlistBtn" onclick="toggleWishlist(event, '${product.id}', this)" style="border-color: var(--border-color); ${isWishlisted ? 'color: var(--error-color)' : ''}">
+                            <i class="${isWishlisted ? 'fas' : 'far'} fa-heart"></i>
+                        </button>
+                        <a href="${storeConfig.whatsappUrl}" target="_blank" class="btn btn-primary" style="background: #25D366; color: white; width: 100%; border:none;">
+                            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; display: flex; gap: 1rem; color: var(--text-light); font-size: 0.9rem;">
+                        <div><i class="fas fa-truck" style="margin-right: 5px;"></i> Fast Delivery</div>
+                        <div><i class="fas fa-undo" style="margin-right: 5px;"></i> 30-Day Returns</div>
+                        <div><i class="fas fa-leaf" style="margin-right: 5px;"></i> 100% Natural</div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="tabs">
+                        <div class="tab-headers">
+                            <button class="tab-btn active" onclick="switchTab(this, 'benefits')">Benefits</button>
+                            <button class="tab-btn" onclick="switchTab(this, 'ingredients')">Ingredients</button>
+                            <button class="tab-btn" onclick="switchTab(this, 'instructions')">How to Use</button>
+                        </div>
+                        
+                        <div id="benefits" class="tab-content active">
+                            <ul>
+                                ${product.benefits.map(b => `<li>${b}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div id="ingredients" class="tab-content">
+                            <p>${product.ingredients}</p>
+                        </div>
+                        <div id="instructions" class="tab-content">
+                            <p>${product.instructions}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('productContainer').innerHTML = html;
+
+            // Related Products
+            const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+            if(related.length < 4) {
+                // fill with other products if not enough in same category
+                const others = products.filter(p => p.id !== product.id && !related.find(r => r.id === p.id));
+                related.push(...others.slice(0, 4 - related.length));
+            }
+            document.getElementById('relatedProducts').innerHTML = related.map(p => createProductCard(p)).join('');
+        });
+
+        function changeImage(el) {
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            // Since we use the same image with filters for demo, we just need the effect.
+            // In a real app, we would change the src.
+            document.getElementById('mainImage').style.filter = el.style.filter || 'none';
+        }
+
+        function switchTab(btn, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            btn.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
